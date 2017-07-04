@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#cube{
+			width:600px;height:600px;margin:0 auto;font-size:40px;
+			position:relative;border:1px solid #000;
+			transform-style:preserve-3d;
+			/*transform:rotatex(45deg) rotatey(45deg) rotatez(45deg);*/
+		}
+		#cube>div{
+			width:200px;height:200px;border:1px solid #000;
+			position:absolute;top:200px;left:200px;background:#fff;
+			text-align:center;box-sizing:border-box;line-height:47px;
+		}
+		#cube span{
+			display:inline-block;width:47px;height:47px;
+			border-radius:50%;color:#fff;background:#000;
+		}
+		/*骰子六个面*/
+		/*第一组*/
+		#cube>div:first-child{/*图片在x-y平面上，转动时，轴也跟着转动*/
+			transform:translatez(100px);  /*正面*/
+		}
+		#cube>div:first-child span{background:red;margin-top:75px;}
+		#cube>div:last-child{
+			transform:rotatey(180deg) translatez(100px);
+		}
+		#cube>div:last-child span{margin:10px;}
+		/*第二组*/
+		#cube>div:nth-child(2){  /*需反向，注意轴也跟着转动了*/
+			transform:rotatex(90deg) translatez(100px);
+		} 
+		#cube>div:nth-child(2) span{margin-top:75px;}
+		#cube>div:nth-child(5){
+			transform:rotatex(-90deg) translatez(100px);
+		}
+		#cube>div:nth-child(5) span{margin:25px;}
+		#cube>div:nth-child(5) span:first-child{
+			position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;
+		}
+		/*第三组*/
+		#cube>div:nth-child(3){
+			transform:rotatey(90deg) translatez(100px);
+		}
+		#cube>div:nth-child(3) span{margin-top:75px;}
+		#cube>div:nth-child(4){
+			transform:rotatey(-90deg) translatez(100px);
+			padding:10px;
+		}
+		#cube>div:nth-child(4) span{
+			margin:10px;background:red;margin-top:25px;
+		}
+		/*动画*/
+		@keyframes scroll{
+			0%{transform:rotatex(45deg) rotatey(45deg) rotatez(45deg);}
+			15%{
+				transform:rotatex(360deg) rotatey(45deg) rotatez(45deg);
+			}
+			25%{
+				transform:rotatex(45deg) rotatey(360deg) rotatez(45deg);
+			}
+			50%{
+				transform:rotatex(45deg) rotatey(45deg) rotatez(360deg);
+			}
+			75%{
+				transform:rotatex(360deg) rotatey(360deg) rotatez(45deg);
+			}
+			100%{transform:rotatex(45deg) rotatey(45deg) rotatez(360deg);}
+		}
+		#cube{
+			animation:scroll 12s linear 1;
+			animation-fill-mode:forwards;
+		}  
+	</style>
+</head>
+<body>
+	<div id="cube">
+		正面
+		<div><span>○</span></div>
+		<div><span>一</span><span>二</span></div>
+		<div><span>一</span><span>二</span><span>三</span></div>
+		<div><span>一</span><span>二</span><span>三</span><span>四</span></div>
+		<div><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span></div>
+		<div><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+	</div>
+</body>
+</html>
